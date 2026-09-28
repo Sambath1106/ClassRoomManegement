@@ -1,59 +1,76 @@
-import Login from "./Login"
-
+import { Link } from "react-router-dom";
 const Register = () => {
   return (
-    <div className="container mx-auto ">
-      <div className="w-120 lg:w-100 md:w-80 sm-70  mx-auto mt-5 rounded-2xl sm:p-3 bg-white p-5 shadow-lg ">
-        <h1 className="text-center text-3xl font-bold">Register Page</h1>
-        <hr className="my-2 border-2 border-amber-950" />
-        <form className="w-full mx-auto">
-          <div className="grid grid-cols-2 gap-2 mt-5">
-            <label htmlFor="fullName" className="font-bold">
-              Full Name
-            </label>
-            <input
-              type="text"
-              id="fullName"
-              className="border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div className="grid grid-cols-2 gap-2 mt-5">
-            <label htmlFor="email" className="font-bold">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              className="border border-gray-300  rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-           <div className="grid grid-cols-2 gap-2 mt-5">
-            <label htmlFor="email" className="font-bold">
-              Select Role
-            </label>
-            <select id="role" className="border border-gray-300  rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-            </select>
-          </div>
-          <div className="mt-2">
-            <p className="font-thin">
-              are you a new user?{" "}
-              <a href={<Login/>} className="text-blue-500 font-thin hover:underline">
-                Register here
-              </a>
-            </p>
-          </div>
-          <button
-            type="submit"
-            className="bg-blue-500 w-full text-white font-bold px-4 py-2 rounded-md mt-5 hover:bg-blue-600"
-          >
-            Login
-          </button>
-        </form>
+    <div className="max-w-md mx-auto mt-10 p-6 shadow-xl rounded-lg">
+      {" "}
+      <h1 className="text-3xl font-bold text-center">Register</h1>
+      <label className="font-light ">Name</label>
+      <input
+        type="text"
+        placeholder="Enter Name"
+        className="border p-2 w-full  rounded"
+      />
+      <div className="mt-2">
+        <label className="font-light ">Email</label>
+        <input
+          type="email"
+          placeholder="Enter Email"
+          className="border p-2 w-full  rounded"
+        />
       </div>
-    </div>
-  )
-}
+      <div className="mt-2">
+        <label className="font-light">Gender</label>
+        <select name="" id="" className="border p-2 w-full rounded">
+          <option value="Male">Male</option>
+          <option value="Female">FeMale</option>
+        </select>
+      </div>
+      <div className="mt-2">
+        <label className="font-light">Class Room</label>
+        <select name="" id="classRoom" className="border p-2 w-full rounded">
+          {Array.from({ length: 12 }, (_, i) => (
+            <option key={i + 400} value={i + 400}>
+              Class {i + 400}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="mt-2">
+        <label className="font-light ">Role</label>
+        <select name="" id="role" className="border p-2 w-full rounded">
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+        </select>
+      </div>
+      <div className="mt-2">
+        <label className="font-light mt-2">Password</label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          className="border p-2 w-full rounded"
+        />
+      </div>
 
-export default Register
+      <div className="mt-2">
+        <label className="font-light mt-2">Confirm Password</label>
+        <input
+          type="confirm-password"
+          placeholder="Enter Confirm Password"
+          className="border p-2 w-full rounded"
+        />
+      </div>
+
+
+      <button className="bg-green-500 text-white w-full p-2 mt-4 rounded">
+        Register
+      </button>
+      <p className="mt-4 text-center">
+        Already have an account?{" "}
+        <Link to="/login" className="text-blue-500">
+          Login
+        </Link>
+      </p>
+    </div>
+  );
+};
+export default Register;

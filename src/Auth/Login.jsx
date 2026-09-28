@@ -1,49 +1,30 @@
-import Register from "./Register"
+import { Link } from "react-router-dom";
+
 const Login = () => {
   return (
-    <div className="container mx-auto ">
-      <div className="w-120 lg:w-100 md:w-80 sm-70  mx-auto mt-5 rounded-2xl sm:p-3 bg-white p-5 shadow-lg ">
-        <h1 className="text-center text-3xl font-bold">Login Page</h1>
-        <hr className="my-2 border-2 border-amber-950" />
-        <form className="w-full mx-auto">
-          <div className="grid grid-cols-2 gap-2 mt-5">
-            <label htmlFor="email" className="font-bold">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              className="border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div className="grid grid-cols-2 gap-2 mt-5">
-            <label htmlFor="password" className="font-bold">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              className="border border-gray-300  rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div className="mt-2">
-            <p className="font-thin">
-              are you a new user?{" "}
-              <a href={<Register />} className="text-blue-500 font-thin hover:underline">
-                Register here
-              </a>
-            </p>
-          </div>
-          <button
-            type="submit"
-            className="bg-blue-500 w-full text-white font-bold px-4 py-2 rounded-md mt-5 hover:bg-blue-600"
-          >
-            Login
-          </button>
-        </form>
-      </div>
+    <div className="max-w-md mx-auto mt-10 p-6 shadow-xl rounded-lg">
+      {" "}
+      <h1 className="text-3xl font-bold text-center">Login</h1>
+      <input
+        type="email"
+        placeholder="Enter Email"
+        className="border p-2 w-full mt-4 rounded"
+      />
+      <input
+        type="password"
+        placeholder="Enter Password"
+        className="border p-2 w-full mt-4 rounded"
+      />
+      <button className="bg-blue-500 text-white w-full p-2 mt-4 rounded">
+        Login
+      </button>
+      <p className="mt-4 text-center">
+        Don't have an account?{" "}
+        <Link to="/register" className="text-blue-500">
+          Register
+        </Link>
+      </p>
     </div>
   );
 };
-
 export default Login;
