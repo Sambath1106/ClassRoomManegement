@@ -11,9 +11,9 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Logo from "../Assets/Logo.png";
-
-
+import { useParams } from "react-router-dom";
 const Sidebar = () => {
+  const {classroom} = useParams();
   const menus = [
     { name: "Dashboard", icon: LayoutDashboard },
     { name: "Teams", icon: Users },
@@ -32,7 +32,7 @@ const Sidebar = () => {
         <div className="w-8 h-8 bg-emerald-500 rounded-lg shadow-lg">
             <img src={Logo} alt="Logo" className="w-full h-full object-cover rounded" />
         </div>
-        <h1 className="font-bold text-lg">ClassRoom 410 </h1>
+        <h1 className="font-bold text-lg">ClassRoom {classroom}</h1>
       </div>
 
       {/* Menu */}
@@ -62,11 +62,12 @@ const Sidebar = () => {
         <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-100">
           <User size={18} />
           Profile
+
         </button>
 
         <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50">
           <LogOut size={18} />
-          <Link to="/login" className="text-blue-500">
+          <Link to="/" className=" text-red-500">
             Logout
           </Link>
         </button>

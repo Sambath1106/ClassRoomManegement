@@ -1,16 +1,37 @@
-# React + Vite
+# Classroom Management
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React + Vite frontend with a PHP API and PostgreSQL database for login and registration.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Create a PostgreSQL database named `classroom_db` in pgAdmin.
+2. Open the database's Query Tool and run [`database/schema.sql`](./database/schema.sql).
+3. Stop any other PHP server currently using port `3000`. In a PowerShell terminal at the project root, configure the PostgreSQL connection. This project’s local PostgreSQL server listens on port `8000`; use the credentials for your local PostgreSQL server:
 
-## React Compiler
+   ```powershell
+   $env:DB_HOST = "localhost"
+   $env:DB_PORT = "8000"
+   $env:DB_NAME = "classroom_db"
+   $env:DB_USER = "postgres"
+   $env:DB_PASSWORD = "110706"
+   php -S localhost:3001 -t .
+   ```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+   Keep this terminal open. The PHP installation must have the `pdo_pgsql` extension enabled.
 
-## Expanding the Oxlint configuration
+4. Open a second terminal at the project root and run:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+   ```powershell
+   npm run dev
+   ```
+
+5. Open the Vite URL shown in the terminal (usually `http://localhost:5173`).
+
+The React app calls `http://localhost:3001/Api/register.php` and `/Api/login.php`. The API permits development requests from Vite on `localhost:5173` and `127.0.0.1:5173`.
+
+## API
+
+- `POST /Api/register.php` — JSON body: `name`, `email`, `gender`, `classroom`, `role`, `password`, and `confirmPassword`.
+- `POST /Api/login.php` — JSON body: `email` and `password`.
+
+Both endpoints return JSON with a `success` boolean and a message (and a `user` object on successful login). Passwords are stored as PHP password hashes, not plain text.
